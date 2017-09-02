@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'sphinx_helpers'
 
 Capybara.server = :puma
 Capybara.javascript_driver = :webkit
@@ -9,7 +8,6 @@ RSpec.configure do |config|
   config.include AcceptanceMacros, type: :feature
   config.include WaitForAjax, type: :feature
   config.include OmniauthMacros, type: :feature
-  config.include SphinxHelpers, type: :feature
 
   config.use_transactional_fixtures = false
 
