@@ -42,6 +42,9 @@ gem 'devise'
 gem 'devise-i18n-views'
 gem 'devise-bootstrap-views'
 gem "responders"
+gem 'omniauth'
+gem 'omniauth-facebook'
+
 
 group :development, :test do
   gem 'rspec-rails'
@@ -53,6 +56,7 @@ group :development, :test do
   gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'capybara-email'
+  gem 'faker'
 end
 
 group :development do
