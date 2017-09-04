@@ -3,6 +3,6 @@ tr id="show#{comment.id}"
   td= comment.body
   td= comment.created_at.strftime("%d.%m.%Y %H:%M:%S")
   td
-    -if can?(:update, comment)
+    -if can?(:update, comment) && @action.nil?
       = link_to t('.edit', :default => t("helpers.links.edit")), '',
               :class => 'btn btn-default btn-xs edit-comment-link', data: {comment_id: comment.id}

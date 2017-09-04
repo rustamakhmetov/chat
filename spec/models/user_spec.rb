@@ -230,7 +230,7 @@ RSpec.describe User, type: :model do
       expect(User.new(firstname: "ivan", lastname: "petrov").fullname).to eq "Ivan Petrov"
     end
 
-    fscenario "with invalid attributes" do
+    scenario "with invalid attributes" do
       expect(User.new(firstname: "ivan", lastname: nil).fullname).to eq "Ivan"
       expect(User.new(firstname: "ivan", lastname: "").fullname).to eq "Ivan"
       expect(User.new(firstname: "", lastname: "petrov").fullname).to eq "Petrov"
