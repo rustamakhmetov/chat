@@ -86,7 +86,7 @@ class User < ApplicationRecord
   end
 
   def fullname
-    self.firstname.camelize+" "+self.lastname.camelize
+    "#{self.firstname.try(:camelize)} #{self.lastname.try(:camelize)}".strip
   end
 
 end
