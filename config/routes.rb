@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   root "dashboard#index"
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], as: :finish_signup
   match '/users/:id', to: 'users#show', via: 'get', as: :user
+
+  mount ActionCable.server => '/cable'
 end

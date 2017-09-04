@@ -1,6 +1,8 @@
-tr
+tr id="show#{comment.id}"
   td= comment.user.fullname
   td= comment.body
   td= comment.created_at.strftime("%d.%m.%Y %H:%M:%S")
   td
-    = link_to t('.edit', :default => t("helpers.links.edit")), edit_comment_path(comment), :class => 'btn btn-default btn-xs'
+    -if can?(:update, comment)
+      = link_to t('.edit', :default => t("helpers.links.edit")), '',
+              :class => 'btn btn-default btn-xs edit-comment-link', data: {comment_id: comment.id}

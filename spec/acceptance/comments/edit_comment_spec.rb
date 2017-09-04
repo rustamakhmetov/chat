@@ -58,4 +58,38 @@ feature 'Edit comment', %q{
     end
   end
 
+  context "multiple sessions" do
+    given!(:comment) { create(:comment, user: user) }
+
+    scenario "an updated comment appears on another user's page", js: true do
+      Capybara.using_session('user') do
+        sign_in user
+        visit root_path
+      end
+
+      Capybara.using_session('user2') do
+        sign_in create(:user)
+        visit root_path
+      end
+
+      Capybara.using_session('user') do
+        click_on edit_caption
+        fill_in 'Body', with: 'Body 1'
+        click_on 'Save'
+        wait_for_ajax
+
+        within ".comments" do
+          expect(page).to have_content 'Body 1'
+        end
+        expect(page).to have_content 'Your comment successfully updated.'
+      end
+
+      Capybara.using_session('user2') do
+        within ".comments" do
+          expect(page).to have_content 'Body 1'
+        end
+      end
+    end
+  end
+
 end

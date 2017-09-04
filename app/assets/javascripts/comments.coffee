@@ -28,5 +28,17 @@ ready = ->
     $('#edit'+comment_id).show();
     $('#show'+comment_id).hide();
 
+$(document).ready ->
+  App.cable.subscriptions.create({
+    channel: 'CommentsChannel'
+  }, {
+    received: (data) ->
+      data = $.parseJSON(data)
+      if (data.action=="create")
+        $('.comments table tbody').append(data.body_html)
+      else # update
+        $('tr#show'+data.id).replaceWith(data.body_html)
+  });
+
 $(document).ready(ready)
 $(document).on('turbolinks', ready)
