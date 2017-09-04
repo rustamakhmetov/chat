@@ -1,0 +1,30 @@
+- model_class = Comment
+.page-header
+  h1=t 'dashboard.title', :default => model_class.model_name.human.pluralize.titleize
+.comments
+  table.table.table-striped
+    thead
+      tr
+        th= model_class.human_attribute_name(:user_id)
+        th= model_class.human_attribute_name(:body)
+        th= model_class.human_attribute_name(:created_at)
+        th=t '.actions', :default => t("helpers.actions")
+    tbody
+      .new-comment
+        -if can?(:create, Comment)
+          = render "comments/form"
+      - @comments.each do |comment|
+        -if can?(:update, comment)
+          tr id="edit#{comment.id}" class="edit-comment"
+            td colspan="4"
+              = form_for comment, html: {id: "edit_comment_#{comment.id}"}, remote: true do |f|
+                = f.error_span(:body)
+                p
+                  = f.label :body
+                  = f.text_area :body
+                p
+                  = f.submit "Save"
+                  '
+                  = link_to "Cancel", '', class: "btn btn-default btn-xs cancel-comment-link",
+                          data: {comment_id: "#edit#{comment.id}"}
+        =render comment
