@@ -88,4 +88,13 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = {host: "fathomless-falls-47314.herokuapp.com"}
+
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+      api_key: 'key-22b122c11e8087988a208b08f42c4658',
+      domain: '100blogs.ru'
+  }
+
 end

@@ -46,6 +46,11 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'cancancan'
 
+group :production do
+  gem 'rails_12factor'
+  gem 'mailgun_rails'
+end
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
