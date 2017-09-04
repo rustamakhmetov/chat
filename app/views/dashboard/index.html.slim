@@ -11,11 +11,27 @@
         th=t '.actions', :default => t("helpers.actions")
     tbody
       .new-comment
-        = render "comments/form"
+        -if can?(:create, Comment)
+          = render "comments/form"
       - @comments.each do |comment|
-        tr
+        -if can?(:update, comment)
+          tr id="edit#{comment.id}" class="edit-comment"
+            td colspan="4"
+              = form_for comment, html: {id: "edit_comment_#{comment.id}"}, remote: true do |f|
+                = f.error_span(:body)
+                p
+                  = f.label :body
+                  = f.text_area :body
+                p
+                  = f.submit "Save"
+                  '
+                  = link_to "Cancel", '', class: "btn btn-default btn-xs cancel-comment-link",
+                          data: {comment_id: "#edit#{comment.id}"}
+        tr id="show#{comment.id}"
           td= comment.user.fullname
           td= comment.body
           td= comment.created_at.strftime("%d.%m.%Y %H:%M:%S")
           td
-            = link_to t('.edit', :default => t("helpers.links.edit")), edit_comment_path(comment), :class => 'btn btn-default btn-xs'
+            -if can?(:update, comment)
+              = link_to t('.edit', :default => t("helpers.links.edit")), '',
+                      :class => 'btn btn-default btn-xs edit-comment-link', data: {comment_id: comment.id}

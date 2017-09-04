@@ -13,3 +13,5 @@ en:
     comments:
       create:
         notice: "Your comment successfully added."
+      update:
+        notice: "Your comment successfully updated."

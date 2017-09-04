@@ -44,7 +44,7 @@ gem 'devise-bootstrap-views'
 gem "responders"
 gem 'omniauth'
 gem 'omniauth-facebook'
-
+gem 'cancancan'
 
 group :development, :test do
   gem 'rspec-rails'

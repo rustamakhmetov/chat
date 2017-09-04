@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :load_user, only: [:finish_signup]
 
+  skip_authorization_check
+
   def finish_signup
     if request.patch?
       if user_params[:email].present?

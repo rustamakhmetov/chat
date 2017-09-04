@@ -8,6 +8,12 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  check_authorization :unless => :devise_controller?
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, alert: exception.message
+  end
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :ensure_signup_complete, only: [:new, :create, :update, :destroy]
 

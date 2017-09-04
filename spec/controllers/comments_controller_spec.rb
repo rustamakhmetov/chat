@@ -41,4 +41,48 @@ RSpec.describe CommentsController, type: :controller do
     end
   end
 
+  describe 'PATCH #update' do
+    sign_in_user
+    let!(:comment) { create(:comment, user: @user) }
+
+    subject { patch :update, params: {id: comment.id, comment: {body: 'Body new'}, format: :json} }
+
+    context 'with valid attributes' do
+      it 'assigns the requested comment to @comment' do
+        subject
+        expect(assigns(:comment).id).to eq comment.id
+      end
+
+      it 'change comment attributes' do
+        subject
+        comment.reload
+        expect(comment.body).to eq 'Body new'
+      end
+
+      it 'render updated template' do
+        subject
+        expect(response).to render_template("comments/create.json")
+      end
+    end
+
+    context 'with invalid attributes' do
+      subject {patch :update, params: {id: comment.id,
+                                       comment: attributes_for(:invalid_comment), format: :json}}
+
+
+      it 'does not change comment attributes' do
+        body = comment.body
+        subject
+        comment.reload
+        expect(comment.body).to eq body
+      end
+
+      it 'render updated template' do
+        subject
+        expect(response).to render_template("comments/create.json")
+      end
+    end
+  end
+
+
 end
