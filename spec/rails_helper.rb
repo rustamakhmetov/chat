@@ -32,7 +32,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.extend ControllerMacros, type: :controller
   config.include MailerHelpers, type: :mailer
-  config.include AbstractController::Translation # use t() instead of I18n.t()
+  config.include I18nMacros
 
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true

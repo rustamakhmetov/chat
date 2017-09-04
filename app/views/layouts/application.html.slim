@@ -22,11 +22,12 @@ html lang="en"
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand href="#"Чат
+          a.navbar-brand href="/"Чат
           .navbar-collapse.collapse.navbar-responsive-collapse
             -if user_signed_in?
               ul.nav.navbar-nav
-                li= link_to link_to t('.change_profile', :default => t("helpers.links.change_profile")), "/path1"
+                li= link_to t('.change_profile', :default => t("helpers.links.change_profile")),
+                        edit_user_registration_path, data: {user_id: current_user.id}, id: "edit"
                 li
                   p.navbar-btn
                     =link_to t('.new', :default => t("helpers.links.new")), new_comment_path, :class => 'btn btn-primary'
