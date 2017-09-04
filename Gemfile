@@ -49,6 +49,7 @@ gem 'cancancan'
 group :production do
   gem 'rails_12factor'
   gem 'mailgun_rails'
+  gem 'redis'
 end
 
 group :development, :test do

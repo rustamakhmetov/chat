@@ -97,4 +97,7 @@ Rails.application.configure do
       domain: '100blogs.ru'
   }
 
+  config.action_cable.url = 'wss://fathomless-falls-47314.herokuapp.com/cable'
+  config.action_cable.allowed_request_origins = ["http://fathomless-falls-47314.herokuapp.com"]
+  #config.action_cable.allowed_request_origins = [ 'https://yourappname.herokuapp.com', /http:\/\/yourappname.herokuapp.com.*/ ]
 end
