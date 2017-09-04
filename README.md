@@ -1,24 +1,33 @@
-# README
+# Пример чата на Ruby on Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+  - В системе реализована аутентификация
+  - Пользователи могут регистрироваться на проекте, логиниться, редактировать профиль и делать «выход из проекта».
+  - Существуют две роли: зарегистрированный пользователь и гость.
+  - Для разделения доступа был использован гем 'cancan'
+  - Зарегистрированные пользователи могут создавать, редактировать комментарии.
+  - Гости могут только зарегистрироваться.
+  - В качестве шаблонизатора использован 'slim', для верстки "Twitter Bootstrap 3"
+  - Реализовано динамическое обновление комментариев у других пользователей с помощью 'ActionCable'
 
-Things you may want to cover:
+### Установка
 
-* Ruby version
+  - пример конфигурации бд (config/database.yml.sample)
 
-* System dependencies
+```sh
+$ bundle install
+$ rake db:create
+$ rake db:migrate
+$ rails server
+```
 
-* Configuration
+  - Создание пользователя test@chat.com и 10 комментариев. Пароль 12345678
 
-* Database creation
+```sh
+$ rake db:seed
+```
 
-* Database initialization
+### Запуск тестов
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```sh
+$ rspec spec/
+```
