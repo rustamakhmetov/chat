@@ -34,10 +34,12 @@ $(document).ready ->
   }, {
     received: (data) ->
       data = $.parseJSON(data)
-      if (data.action=="create")
-        $('.comments table tbody').append(data.body_html)
-      else # update
-        $('tr#show'+data.id).replaceWith(data.body_html)
+      user_data = $('a#logout').data()
+      if user_data and data.user_id!=user_data.userId
+        if (data.action=="create")
+          $('.comments table tbody').append(data.body_html)
+        else # update
+          $('tr#show'+data.id).replaceWith(data.body_html)
   });
 
 $(document).ready(ready)
