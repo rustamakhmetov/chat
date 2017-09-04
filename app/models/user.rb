@@ -83,4 +83,8 @@ class User < ApplicationRecord
     end
   end
 
+  def fullname
+    self.firstname.camelize+" "+self.lastname.camelize
+  end
+
 end

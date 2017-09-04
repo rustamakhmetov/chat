@@ -26,9 +26,11 @@ html lang="en"
           .navbar-collapse.collapse.navbar-responsive-collapse
             -if user_signed_in?
               ul.nav.navbar-nav
-                li= link_to "Link 1", "/path1"
-                li= link_to "Link 2", "/path2"
-                li= link_to "Выйти", destroy_user_session_path,
+                li= link_to link_to t('.change_profile', :default => t("helpers.links.change_profile")), "/path1"
+                li
+                  p.navbar-btn
+                    =link_to t('.new', :default => t("helpers.links.new")), new_comment_path, :class => 'btn btn-primary'
+                li= link_to t('.logout', :default => t("helpers.links.logout")), destroy_user_session_path,
                         method: :delete, data: {user_id: current_user.id}, id: "logout"
 
     .container

@@ -14,10 +14,8 @@ en:
       cancel: "Cancel"
       confirm: "Are you sure?"
       destroy: "Delete"
-      new: "Написать комментарий"
-      change_profile: "Изменить профиль"
-      edit: "Редактировать"
-      logout: "Выйти"
+      new: "New"
+      edit: "Edit"
     titles:
       edit: "Edit %{model}"
       save: "Save %{model}"
