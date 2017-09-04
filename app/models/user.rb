@@ -24,6 +24,8 @@ class User < ApplicationRecord
                       firstname: auth.info.first_name, lastname: auth.info.last_name)
       if user.temp_email?
         user.skip_confirmation!
+      else
+        user.send_reset_password_instructions
       end
       user.save
     end
