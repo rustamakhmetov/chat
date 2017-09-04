@@ -30,14 +30,16 @@ html lang="en"
                         edit_user_registration_path, data: {user_id: current_user.id}, id: "edit"
                 li
                   p.navbar-btn
-                    =link_to t('.new', :default => t("helpers.links.new")), new_comment_path, :class => 'btn btn-primary'
+                    =link_to t('.new', :default => t("helpers.links.new")), new_comment_path,
+                            :class => 'btn btn-primary add-comment-link'
                 li= link_to t('.logout', :default => t("helpers.links.logout")), destroy_user_session_path,
                         method: :delete, data: {user_id: current_user.id}, id: "logout"
 
     .container
       .row
         .col-lg-9
-          = bootstrap_flash
+          .flash
+            = bootstrap_flash
           = yield
         .col-lg-3
           .well.sidebar-nav

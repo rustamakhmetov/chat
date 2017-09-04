@@ -1,18 +1,21 @@
 - model_class = Comment
 .page-header
   h1=t 'dashboard.title', :default => model_class.model_name.human.pluralize.titleize
-table.table.table-striped
-  thead
-    tr
-      th= model_class.human_attribute_name(:user_id)
-      th= model_class.human_attribute_name(:body)
-      th= model_class.human_attribute_name(:created_at)
-      th=t '.actions', :default => t("helpers.actions")
-  tbody
-    - @comments.each do |comment|
+.comments
+  table.table.table-striped
+    thead
       tr
-        td= comment.user.fullname
-        td= comment.body
-        td= comment.created_at.strftime("%d.%m.%Y %H:%M:%S")
-        td
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_comment_path(comment), :class => 'btn btn-default btn-xs'
+        th= model_class.human_attribute_name(:user_id)
+        th= model_class.human_attribute_name(:body)
+        th= model_class.human_attribute_name(:created_at)
+        th=t '.actions', :default => t("helpers.actions")
+    tbody
+      .new-comment
+        = render "comments/form"
+      - @comments.each do |comment|
+        tr
+          td= comment.user.fullname
+          td= comment.body
+          td= comment.created_at.strftime("%d.%m.%Y %H:%M:%S")
+          td
+            = link_to t('.edit', :default => t("helpers.links.edit")), edit_comment_path(comment), :class => 'btn btn-default btn-xs'

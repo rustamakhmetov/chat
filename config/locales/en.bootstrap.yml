@@ -14,6 +14,8 @@ en:
       cancel: "Cancel"
       confirm: "Are you sure?"
       destroy: "Delete"
+      create: "Добавить"
+      cancel: "Закрыть"
       new: "Написать комментарий"
       change_profile: "Изменить профиль"
       edit: "Редактировать"

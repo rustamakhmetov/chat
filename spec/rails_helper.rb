@@ -33,6 +33,7 @@ RSpec.configure do |config|
   config.extend ControllerMacros, type: :controller
   config.include MailerHelpers, type: :mailer
   config.include I18nMacros
+  config.render_views = true
 
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
