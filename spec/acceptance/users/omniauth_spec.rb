@@ -28,7 +28,10 @@ feature 'Omniauth authorization', %q{
 
       expect(page).to have_content("You have to confirm your email address before continuing")
       open_email(auth.info.email)
-      current_email.click_link 'Confirm my account'
+      current_emails.each do |email|
+        next unless email.has_link?('Confirm my account')
+        email.click_link 'Confirm my account'
+      end
       expect(page).to have_content 'Your email address has been successfully confirmed.'
 
       click_on "Sign in with Facebook"
@@ -144,4 +147,8 @@ feature 'Omniauth authorization', %q{
       end
     end
   end
+end
+
+def get_message_part(mail, content_type)
+  mail.body.parts.find { |p| p.content_type.match content_type }.body.raw_source
 end

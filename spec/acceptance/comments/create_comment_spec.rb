@@ -67,6 +67,7 @@ feature 'Create comment', %q{
       Capybara.using_session('user2') do
         within ".comments" do
           expect(page).to have_content 'Body 1'
+          expect(page).to_not have_link t('.edit', :default => t("helpers.links.edit"))
         end
       end
     end
