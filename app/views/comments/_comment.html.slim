@@ -5,4 +5,5 @@ tr id="show#{comment.id}"
   td
     -if can?(:update, comment) && local_assigns[:action].nil?
       = link_to t('.edit', :default => t("helpers.links.edit")), '',
-              :class => 'btn btn-default btn-xs edit-comment-link', data: {comment_id: comment.id}
+              :class => 'btn btn-default btn-xs edit-comment-link', data: {comment_id: comment.id},
+              html: {id: "btnEdit#{comment.id}" }

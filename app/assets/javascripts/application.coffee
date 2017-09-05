@@ -2,8 +2,11 @@
 # about supported directives.
 #
 #= require jquery
+#= require jquery.turbolinks
 #= require jquery_ujs
+# ... your other scripts here ... [
 #= require twitter/bootstrap
+# ]... your other scripts here ...
 #= require turbolinks
 #= require_tree .
 

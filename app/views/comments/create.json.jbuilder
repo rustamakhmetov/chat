@@ -9,3 +9,4 @@ if @comment.errors.empty?
   json.action local_assigns[:action]
 end
 json.messages bootstrap_flash
+flash.discard

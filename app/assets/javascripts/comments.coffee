@@ -13,6 +13,12 @@ ready = ->
     $('tr#show'+data.id).replaceWith(data.body_html)
     $('tr#show'+data.id).show();
     $('tr#edit'+data.id).hide();
+    $(document).on('click', '.edit-comment-link', (e) ->
+      e.preventDefault();
+      comment_id = $(this).data('commentId')
+      $('#edit'+comment_id).show();
+      $('#show'+comment_id).hide();
+    );
 
   $('.cancel-comment-link').click (e) ->
     e.preventDefault();
@@ -45,3 +51,5 @@ $(document).ready ->
 
 $(document).ready(ready)
 $(document).on('turbolinks:load', ready)
+#$(document).on('page:load', ready)  # "вешаем" функцию ready на событие page:load
+$(document).on('page:update', ready) # "вешаем" функцию ready на событие page:update
