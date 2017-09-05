@@ -36,7 +36,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
 gem 'slim-rails'
-gem 'jquery-turbolinks'
+#gem 'jquery-turbolinks'
 gem 'jquery-rails'
 gem 'rubocop', require: false
 gem 'devise'

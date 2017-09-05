@@ -1,3 +1,17 @@
+-if can?(:update, comment)
+  tr id="edit#{comment.id}" class="edit-comment"
+    td colspan="4"
+      = form_for comment, html: {id: "edit_comment_#{comment.id}"}, remote: true do |f|
+        = f.error_span(:body)
+        p
+          = f.label :body
+          = f.text_area :body
+        p
+          = f.submit "Save"
+          '
+          = link_to "Cancel", '', class: "btn btn-default btn-xs cancel-comment-link",
+                  data: {comment_id: comment.id}
+
 tr id="show#{comment.id}"
   td= comment.user.fullname
   td= comment.body

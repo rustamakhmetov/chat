@@ -2,7 +2,7 @@
 # about supported directives.
 #
 #= require jquery
-#= require jquery.turbolinks
+# require jquery.turbolinks
 #= require jquery_ujs
 # ... your other scripts here ... [
 #= require twitter/bootstrap
@@ -24,5 +24,4 @@ root.show_flash_messages = (xhr) ->
     if datas.messages?
       $('.flash').append(datas.messages);
 
-$(document).ready(ready) # "вешаем" функцию ready на событие document.ready
-$(document).on('turbolinks', ready)  # "вешаем" функцию ready на событие turbolinks:load
+$(document).on('turbolinks:load', ready)  # "вешаем" функцию ready на событие turbolinks:load

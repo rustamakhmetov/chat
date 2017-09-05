@@ -48,6 +48,32 @@ feature 'Edit comment', %q{
       expect(page).to_not have_selector(edit_tag)
       expect(page).to have_css("tr#show#{comment.id}")
     end
+
+    scenario 'edit comment after his create', js: true do
+      # create
+      click_on t('.new', :default => t("helpers.links.new"))
+      within ".new-comment" do
+        fill_in 'Body', with: 'Body 1'
+        click_on t('.create', :default => t("helpers.links.create"))
+      end
+      within ".comments" do
+        expect(page).to have_content 'Body 1'
+      end
+
+      # edit
+      within "tbody tr:last-child" do
+        click_on edit_caption
+        wait_for_ajax
+      end
+      comment2 = Comment.where.not(id: comment.id).first
+      edit_tag = "form#edit_comment_#{comment2.id}"
+      expect(page).to have_selector(edit_tag)
+
+      #save
+      click_on 'Save'
+      wait_for_ajax
+      expect(page).to_not have_selector(edit_tag)
+    end
   end
 
   describe 'Non author' do

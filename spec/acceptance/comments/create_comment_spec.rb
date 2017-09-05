@@ -21,6 +21,7 @@ feature 'Create comment', %q{
 
     within ".comments" do
       expect(page).to have_content 'Body 1'
+      expect(page).to_not have_content('Body 1', count: 2)
     end
     expect(page).to have_content 'Your comment successfully added.'
   end
