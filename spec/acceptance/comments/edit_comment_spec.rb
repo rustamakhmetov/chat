@@ -7,6 +7,8 @@ feature 'Edit comment', %q{
 } do
   given!(:user) { create(:user) }
   given!(:edit_caption) { t('.edit', :default => t("helpers.links.edit")) }
+  given(:edit_tag) { "form#edit_comment_#{comment.id}" }
+
 
   describe 'Author' do
     given!(:comment) { create(:comment, user: user) }
@@ -35,6 +37,16 @@ feature 'Edit comment', %q{
       expect(page).to have_link(edit_caption)
       expect(page).to_not have_content(comment.body)
       expect(page).to have_content('new comment')
+    end
+
+    scenario 'cancels edit comment', js: true do
+      expect(page).to have_css("tr#show#{comment.id}")
+      expect(page).to_not have_selector(edit_tag)
+      click_on edit_caption
+      expect(page).to have_selector(edit_tag)
+      click_on 'Cancel'
+      expect(page).to_not have_selector(edit_tag)
+      expect(page).to have_css("tr#show#{comment.id}")
     end
   end
 

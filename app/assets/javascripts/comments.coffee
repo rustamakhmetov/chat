@@ -18,7 +18,8 @@ ready = ->
     e.preventDefault();
     comment_id = $(this).data('commentId')
     if (comment_id?)
-      $(comment_id).hide();
+      $("#edit"+comment_id).hide();
+      $("#show"+comment_id).show();
     else
       $('.new-comment').hide();
 
@@ -43,4 +44,4 @@ $(document).ready ->
   });
 
 $(document).ready(ready)
-$(document).on('turbolinks', ready)
+$(document).on('turbolinks:load', ready)

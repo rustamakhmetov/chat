@@ -26,5 +26,5 @@
                   = f.submit "Save"
                   '
                   = link_to "Cancel", '', class: "btn btn-default btn-xs cancel-comment-link",
-                          data: {comment_id: "#edit#{comment.id}"}
+                          data: {comment_id: comment.id}
         =render comment
