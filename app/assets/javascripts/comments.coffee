@@ -1,5 +1,5 @@
 ready = ->
-  $('.add-comment-link').click (e) ->
+  $(document).on 'click', '.add-comment-link', (e) ->
     e.preventDefault();
     $('#comment_body').val("")
     $('.new-comment').show();
@@ -51,4 +51,5 @@ $(document).ready ->
           $('tr#show'+data.id).replaceWith(data.body_html)
   });
 
+$(document).ready(ready)
 $(document).on('turbolinks:load', ready)

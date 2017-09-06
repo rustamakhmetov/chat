@@ -27,7 +27,7 @@ html lang="en"
             -if user_signed_in?
               ul.nav.navbar-nav
                 li= link_to t('.change_profile', :default => t("helpers.links.change_profile")),
-                        edit_user_registration_path, data: {user_id: current_user.id}, id: "edit"
+                        edit_user_registration_path, data: {user_id: current_user.id, turbolinks: false}, id: "edit"
                 li
                   p.navbar-btn
                     =link_to t('.new', :default => t("helpers.links.new")), '',
