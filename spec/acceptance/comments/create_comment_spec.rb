@@ -23,7 +23,7 @@ feature 'Create comment', %q{
       expect(page).to have_content 'Body 1'
       expect(page).to_not have_content('Body 1', count: 2)
     end
-    expect(page).to have_content 'Your comment successfully added.'
+    expect(page).to have_content('Your comment successfully added.', count: 1)
   end
 
   scenario 'Authenticate user add invalid comment', js:true do
@@ -60,14 +60,14 @@ feature 'Create comment', %q{
         end
 
         within ".comments" do
-          expect(page).to have_content 'Body 1'
+          expect(page).to have_content('Body 1', count: 1)
         end
-        expect(page).to have_content 'Your comment successfully added.'
+        expect(page).to have_content('Your comment successfully added.', count: 1)
       end
 
       Capybara.using_session('user2') do
         within ".comments" do
-          expect(page).to have_content 'Body 1'
+          expect(page).to have_content('Body 1', count: 1)
           expect(page).to_not have_link t('.edit', :default => t("helpers.links.edit"))
         end
       end

@@ -36,7 +36,7 @@ feature 'Edit comment', %q{
       expect(page).to_not have_selector(edit_tag)
       expect(page).to have_link(edit_caption)
       expect(page).to_not have_content(comment.body)
-      expect(page).to have_content('new comment')
+      expect(page).to have_content('new comment', count: 1)
     end
 
     scenario 'cancels edit comment', js: true do
@@ -57,7 +57,7 @@ feature 'Edit comment', %q{
         click_on t('.create', :default => t("helpers.links.create"))
       end
       within ".comments" do
-        expect(page).to have_content 'Body 1'
+        expect(page).to have_content('Body 1', count: 1)
       end
 
       # edit
@@ -117,9 +117,9 @@ feature 'Edit comment', %q{
         wait_for_ajax
 
         within ".comments" do
-          expect(page).to have_content 'Body 1'
+          expect(page).to have_content('Body 1', count: 1)
         end
-        expect(page).to have_content 'Your comment successfully updated.'
+        expect(page).to have_content('Your comment successfully updated.', count: 1)
       end
 
       Capybara.using_session('user2') do
